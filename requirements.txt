@@ -2,3 +2,6 @@
 
 beautifulsoup4
 requests
+
+# install python3-html5lib for your distro, for fedora 31 do
+# $ sudo dnf install python3-html5lib.noarch
