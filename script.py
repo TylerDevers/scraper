@@ -45,7 +45,7 @@ def get_content(search_term):
     #open local file in append mode
     with open("output.csv", "a") as local_file:
         # add stamp to new export data
-        local_file.write('\n') # newline ensures column 1
+        #local_file.write('\n') # newline ensures column 1
         todays_date = str(datetime.datetime.now().date())
         local_file.write(str(todays_date) + "," + '\n') 
         local_file.write(str(url) + "\n")

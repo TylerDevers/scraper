@@ -6,3 +6,6 @@ Search terms are pulled from a given .csv file, the script then searches for tho
 
 ##Importing CSV file
 Take care when importing csv file to your preffered spreadsheet software. Ensure that seperation by commas only is selected, else formatting may not be proper.
+
+##Time Frame
+This only searches the last 30 days worth of web content. One would need to modify the 'url' variable in script.py to to change this time frame.
