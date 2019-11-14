@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 import requests # find_all() get_text()
 import datetime # needed for timestamp in output.csv
 
+print("script running...")
+result_count = 0
 
 #import keywords from external csv file in a list, replace spaces with + for easy url insertion
 file_of_keywords = open("keywords.csv", 'r')
@@ -24,6 +26,8 @@ with open("output.csv", "w"):
     pass
 
 def get_content(search_term):
+    global result_count
+
     # Use request lib to get homepage content, do your url research
     url = "https://www.bing.com/news/search?q=" +\
         search_term +\
@@ -40,6 +44,7 @@ def get_content(search_term):
     for a_tag in soup1(class_='title', href=True):
         bing_list.append(a_tag.text.strip().lower().replace(',',"") + ',')
         bing_list.append(a_tag['href'] + "\n")
+        result_count += 1
 
     # export data to .csv as well as website name as a header
     #open local file in append mode
@@ -56,4 +61,5 @@ def get_content(search_term):
 for each_keyword in keywords:
     get_content(each_keyword)
 
+print("script completed. " + str(result_count) + " results returned.")
 exit(0)
