@@ -31,7 +31,7 @@ def get_content(search_term):
     # Use request lib to get homepage content, do your url research
     url = "https://www.bing.com/news/search?q=" +\
         search_term +\
-        "&qft=interval%3d%229%22&form=PTFTNR"
+        "&qft=interval%3d\"8\"&form=PTFTNR"
     first_request = requests.get(url)
     first_results = first_request.content
 
