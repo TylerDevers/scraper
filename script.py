@@ -13,6 +13,7 @@ import datetime # needed for timestamp in output.csv
 
 print("script running...")
 result_count = 0
+date_not_written = True
 
 #import keywords from external csv file in a list, replace spaces with + for easy url insertion
 file_of_keywords = open("keywords.csv", 'r')
@@ -27,6 +28,7 @@ with open("output.csv", "w"):
 
 def get_content(search_term):
     global result_count
+    global date_not_written
 
     # Use request lib to get homepage content, do your url research
     url = "https://www.bing.com/news/search?q=" +\
@@ -43,23 +45,25 @@ def get_content(search_term):
     bing_list = []
     for a_tag in soup1(class_='title', href=True):
         current_headline = a_tag.text.strip().lower().replace(',',"") + ','
+        current_url = a_tag['href']
 
-        if current_headline not in bing_list: 
-            bing_list.append(current_headline)
-            bing_list.append(a_tag['href'] + "\n")
-            result_count += 1
+        bing_list.append(current_headline)
+        bing_list.append(current_url + "\n")
+        result_count += 1
 
     # export data to .csv as well as website name as a header
     #open local file in append mode
     with open("output.csv", "a") as local_file:
-        # add stamp to new export data
-        #local_file.write('\n') # newline ensures column 1
-        todays_date = str(datetime.datetime.now().date())
-        local_file.write(str(todays_date) + "," + '\n') 
-        local_file.write(str(url) + "\n")
+        if date_not_written:
+            # add stamp to new export data
+            todays_date = str(datetime.datetime.now().date())
+            local_file.write(str(todays_date) + "," + '\n') 
+            local_file.write("TITLE,URL\n")
+            date_not_written = False
+
         # append data to file in column format
         for data in bing_list:
-            local_file.write(data) #newline should force column format
+            local_file.write(data)
 
 for each_keyword in keywords:
     get_content(each_keyword)
