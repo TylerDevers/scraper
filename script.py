@@ -1,11 +1,10 @@
 #! /usr/bin/python3
 
-'''
-Use requests lib to pull data from URL
-Use beautiful soups to parse the data.
-Filter the data using an external csv file of keywords
-Export the filtered data to a new csv file in column format
-'''
+
+# Use requests lib to pull data from URL
+# Use beautiful soups to parse the data.
+# Filter the data using an external csv file of keywords
+# Export the filtered data to a new csv file in column format
 
 from bs4 import BeautifulSoup
 import requests # find_all() get_text()
