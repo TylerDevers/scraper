@@ -42,9 +42,12 @@ def get_content(search_term):
     # Do your html/css research for appropriate tags
     bing_list = []
     for a_tag in soup1(class_='title', href=True):
-        bing_list.append(a_tag.text.strip().lower().replace(',',"") + ',')
-        bing_list.append(a_tag['href'] + "\n")
-        result_count += 1
+        current_headline = a_tag.text.strip().lower().replace(',',"") + ','
+
+        if current_headline not in bing_list: 
+            bing_list.append(current_headline)
+            bing_list.append(a_tag['href'] + "\n")
+            result_count += 1
 
     # export data to .csv as well as website name as a header
     #open local file in append mode
