@@ -18,7 +18,7 @@ date_not_written = True
 file_of_keywords = open("keywords.csv", 'r')
 keywords = []
 for item in file_of_keywords:
-    keywords.append(item.strip().lower().replace(" ","+"))
+    keywords.append('"' + item.strip().lower().replace(" ","+") + '"')
 file_of_keywords.closed
 
 # empty output file to ready it for new data.
