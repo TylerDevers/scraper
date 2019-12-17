@@ -15,7 +15,7 @@ result_count = 0
 date_not_written = True
 
 #import keywords from external csv file in a list, replace spaces with + for easy url insertion
-file_of_keywords = open("keywords.csv", 'r')
+file_of_keywords = open("keywords_reduced.csv", 'r')
 keywords = []
 for item in file_of_keywords:
     keywords.append('"' + item.strip().lower().replace(" ","+") + '"')
